@@ -29,8 +29,7 @@ static char* domain_name[] = {
 	"http://www.ifeng.com",
 	"http://www.z.cn",
 	"http://www.360buy.com",
-	"http://www.dangdang.com",
-	"http://www.zaobao.com",
+	"http://www.dangdang.com"
 };
 
 /* get length of html file */

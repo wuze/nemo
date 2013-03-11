@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: test - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP661.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/test.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ  /c 
+"F:\github\wuze\nemo\test\main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP661.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP662.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/test.pdb" /debug /machine:I386 /out:"Debug/test.exe" /pdbtype:sept 
+.\Debug\main.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP662.tmp"
+<h3>Output Window</h3>
+Compiling...
+main.cpp
+f:\github\wuze\nemo\test\main.cpp(94) : error C2664: 'fread' : cannot convert parameter 4 from 'void *' to 'struct _iobuf *'
+        Conversion from 'void*' to pointer to non-'void' requires an explicit cast
+f:\github\wuze\nemo\test\main.cpp(95) : error C2664: 'fclose' : cannot convert parameter 1 from 'void *' to 'struct _iobuf *'
+        Conversion from 'void*' to pointer to non-'void' requires an explicit cast
+f:\github\wuze\nemo\test\main.cpp(224) : error C2664: 'InternetReadFile' : cannot convert parameter 4 from 'unsigned int *' to 'unsigned long *'
+        Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+f:\github\wuze\nemo\test\main.cpp(250) : error C2664: 'get_file_content' : cannot convert parameter 2 from 'char ** ' to 'void ** '
+        Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+test.exe - 4 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

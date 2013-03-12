@@ -1,0 +1,41 @@
+[33mcommit e36e85dfb33ce8f2665412cf54cae7ee85c699f5[m
+Author: Lee <lee@163.com>
+Date:   Mon Mar 11 17:41:35 2013 +0800
+
+    rm remote test.cpp
+
+[33mcommit 22f8792c4bbaed9bce65b06ae16f0475ad465a13[m
+Author: Lee <lee@163.com>
+Date:   Mon Mar 11 17:31:14 2013 +0800
+
+    add a file in test
+
+[33mcommit 0afb73a81c1d6e2d16dbc2e26e088608cd201d28[m
+Author: Lee <lee@163.com>
+Date:   Mon Mar 11 17:19:50 2013 +0800
+
+    rm test.cpp
+
+[33mcommit 72b4bc47b1af1972535e85ad98f958b22b537544[m
+Author: Lee <lee@163.com>
+Date:   Mon Mar 11 17:15:54 2013 +0800
+
+    add test file
+
+[33mcommit 263cc1154c5e8276961a663131d5643200df0df1[m
+Author: Little Black <wuze000@gmail.com>
+Date:   Mon Mar 11 17:04:50 2013 +0800
+
+    Update main.cpp
+
+[33mcommit a1103e46690aa7088f83480e557adecd8de3b67c[m
+Author: Lee <lee@163.com>
+Date:   Mon Mar 11 17:01:08 2013 +0800
+
+    'commit'
+
+[33mcommit b82f10acfae4bb1e89acc5c416dd460a5c29ffec[m
+Author: Little Black <wuze000@gmail.com>
+Date:   Mon Mar 11 01:55:09 2013 -0700
+
+    Initial commit

@@ -1,0 +1,12 @@
+
+#if !defined(AFX_SIN_H__C5848CEC_C21C_43D0_9481_63427DAC180B__INCLUDED_)
+#define AFX_SIN_H__C5848CEC_C21C_43D0_9481_63427DAC180B__INCLUDED_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+#include "resource.h"
+
+
+#endif // !defined(AFX_SIN_H__C5848CEC_C21C_43D0_9481_63427DAC180B__INCLUDED_)

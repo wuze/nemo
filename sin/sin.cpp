@@ -134,6 +134,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY	- post a quit message and return
 //
 //
+
+	int   x=0,y=0;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int wmId, wmEvent;
@@ -145,20 +147,68 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	char str[100];
 	double  step,rac;
 	FILE   *fp;
+	HDC    HH;
+
+	HDC BKDC;
+	HDC BuffDC;
+	HDC hScrDC;
 
 
 
+	HBITMAP  hbmp,bmp;
 	LoadString(hInst, IDS_HELLO, szHello, MAX_LOADSTRING);
 
 	switch (message) 
 	{
 
-	case WM_INITDIALOG:
-		{
-			RECT rts;
-
+		case WM_KEYDOWN:
+			{
+			wmId    = LOWORD(wParam); 
+			wmEvent = HIWORD(wParam); 
+			RECT rt;
+			GetClientRect(hWnd,&rt);	
+			switch(wmId)
+			{				
+				case VK_UP:
+					if(y>0)
+					{
+						y -= 10;
+					}
+					else
+					{
+						y= rt.bottom;
+					}
+					break;
+				case VK_RIGHT:
+					{
+					
+						if(x>rt.right)
+							x=0;
+						else
+							x += 10;
+					}
+					break;
+				case VK_LEFT:
+					{
+						if(x<0)
+							x=rt.right;
+						else
+							x -= 10;
+					}
+					break;
+				case VK_DOWN:
+					{
+						if(y>rt.bottom)
+							y=0;
+						else
+							y+=10;
+					}
+					break;
+			}
+			InvalidateRect(hWnd,NULL,TRUE);
 			break;
-		}
+			}
+
 		case WM_COMMAND:
 			wmId    = LOWORD(wParam); 
 			wmEvent = HIWORD(wParam); 
@@ -213,6 +263,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			Polyline(hdc,pt,POINT_NUM);
 			SelectObject(hdc,hOldpen);
+			
+
+
+
+			HH=(HDC)CreateCompatibleDC(hdc);			
+			hbmp=(HBITMAP)LoadImage(NULL,"pic.bmp",IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION|LR_LOADFROMFILE);
+			SelectObject(HH,hbmp);
+			BitBlt(hdc,x,y,400,400,HH,0,0,SRCCOPY);
+
+
+
+			/*
+			hScrDC=CreateDC(_T("DISPLAY"),NULL,NULL,NULL);
+			hbmp = CreateCompatibleBitmap(hScrDC,100,100);
+			HH = CreateCompatibleDC(0);
+			BKDC=CreateCompatibleDC(0);
+			BuffDC=CreateCompatibleDC(0);
+			SelectObject(BuffDC,hbmp);
+
+			hbmp=(HBITMAP)LoadImage(hInst,TEXT("pic"),IMAGE_BITMAP,0,0,LR_LOADFROMFILE|LR_CREATEDIBSECTION);
+
+			SelectObject(BKDC,bmp);
+
+			BitBlt(BuffDC,x,y,400,200,BKDC,0,0,SRCCOPY);
+			BitBlt(BuffDC,x,y,400,200,HH,0,0,SRCCOPY);
+			BitBlt(hdc,x,y,400,200,BuffDC,0,0,SRCCOPY);
+			*/
+			/*
+			CreateCompatibleBitmap(hdc,1200,100);
+	
+			SelectObject(hdc,hbmp);
+				
+			BitBlt(hdc,0,0,400,200,HH,0,0,SRCCOPY);
+			*/
+
+
 			EndPaint(hWnd, &ps);
 			break;
 		case WM_DESTROY:

@@ -73,7 +73,7 @@ void CClockDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CClockDlg)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	DDX_Control(pDX, IDC_STATIC1, m_clock);
 	//}}AFX_DATA_MAP
 }
 
@@ -183,4 +183,11 @@ void CClockDlg::OnTimer(UINT nIDEvent)
 
 	m_clock.setClock(nHour,nMinute,nSecond);
 	CDialog::OnTimer(nIDEvent);
+}
+
+void CClockDlg::OnOK() 
+{
+	// TODO: Add extra validation here
+	
+	CDialog::OnOK();
 }

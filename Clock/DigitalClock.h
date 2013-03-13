@@ -40,6 +40,12 @@ public:
 	void DrawTimer();
 	void setClock(int nHour,int nMinute,int nSecond);
 	void DrawSection1(int nLeft);
+	void DrawSection2(int nLeft);
+	void DrawSection3(int nLeft);
+	void DrawSection4(int nLeft);
+	void DrawSection5(int nLeft);
+	void DrawSection6(int nLeft);
+	void DrawSection7(int nLeft);
 	virtual ~CDigitalClock();
 
 	// Generated message map functions
@@ -64,7 +70,7 @@ private:
 	int	 m_nSecond;
 	int  m_nSpace;
 	int  m_nXmargin;
-	int  m_nYMargin;
+	int  m_nYmargin;
 	CRect m_rect;
 
 };

@@ -11,18 +11,19 @@
 /////////////////////////////////////////////////////////////////////////////
 // CClockDlg dialog
 
+
 #include "DigitalClock.h"
 class CClockDlg : public CDialog
 {
 // Construction
 public:
-	CDigitalClock m_clock;
+
 	CClockDlg(CWnd* pParent = NULL);	// standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CClockDlg)
 	enum { IDD = IDD_CLOCK_DIALOG };
-		// NOTE: the ClassWizard will add data members here
+	CDigitalClock	m_clock;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -42,6 +43,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnTimer(UINT nIDEvent);
+	virtual void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

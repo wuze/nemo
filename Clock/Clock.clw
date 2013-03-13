@@ -51,9 +51,10 @@ Control4=IDOK,button,1342373889
 [DLG:IDD_CLOCK_DIALOG]
 Type=1
 Class=CClockDlg
-ControlCount=2
+ControlCount=3
 Control1=IDOK,button,1342242817
 Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC1,static,1342308352
 
 [CLS:CDigitalClock]
 Type=0

@@ -35,6 +35,9 @@ public:
 
 // Implementation
 public:
+	void DrawSecond();
+	void DrawMinute();
+	void Draw2Dot(int nLeft);
 	void DrawSingleNumber(int nNum,int nLeft);
 	void DrawHour();
 	void DrawTimer();

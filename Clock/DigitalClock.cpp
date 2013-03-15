@@ -236,7 +236,7 @@ void CDigitalClock::DrawSection7(int nLeft)
 	if (m_memDC.m_hDC!=NULL)
 	{
 		CPoint point[6];
-		point[0].x=nLeft+(int)(0.4*m_nWidth);
+		point[0].x=nLeft+(int)(0.3*m_nWidth);
 		point[0].y=(int)(0.9*m_nWidth)+m_nYmargin;
 		
 		point[1].x=nLeft+(int)(0.7*m_nWidth);
@@ -325,8 +325,8 @@ void CDigitalClock::DrawTimer()
 		CPen* pOldPen=m_memDC.SelectObject(&pen);
 		
 		DrawHour();
-		//DrawMinute();
-		//DrawSecond();
+		DrawMinute();
+		DrawSecond();
 		
 		Invalidate();
 		m_memDC.SelectObject(pOldPen);
@@ -337,17 +337,173 @@ void CDigitalClock::DrawTimer()
 void CDigitalClock::DrawHour()
 {
     int nLeft=m_nXmargin;
-	DrawSingleNumber(0,nLeft);
+
+	if (m_nHour<10)
+	{
+		DrawSingleNumber(0,nLeft);
+		nLeft+=m_nWidth+m_nSpace;
+		DrawSingleNumber(m_nHour,nLeft);
+	}
+	else
+	{
+		TCHAR *c=new TCHAR[10];
+		_itoa(m_nHour,c,10);
+		int num1=c[0]-48;
+		int num2=c[1]-48;
+		DrawSingleNumber(num1,nLeft);
+		nLeft+=m_nWidth+m_nSpace;
+		DrawSingleNumber(num2,nLeft);
+	}
+	nLeft+=m_nWidth;
+	Draw2Dot(nLeft);	
 }
 
 
 void CDigitalClock::DrawSingleNumber(int nNum, int nLeft)
 {
-	DrawSection1(nLeft);
-	DrawSection2(nLeft);
-	DrawSection3(nLeft);
-	DrawSection4(nLeft);
-	DrawSection5(nLeft);
-	DrawSection6(nLeft);
-	DrawSection7(nLeft);
+
+	switch (nNum)
+	{
+	case 0:
+		DrawSection1(nLeft);
+		DrawSection2(nLeft);
+		DrawSection3(nLeft);
+		DrawSection4(nLeft);
+		DrawSection5(nLeft);
+		DrawSection6(nLeft);
+		break;
+	case 1:		
+		DrawSection2(nLeft);
+		DrawSection3(nLeft);		
+		break;
+	case 2:
+		DrawSection1(nLeft);
+		DrawSection2(nLeft);
+		DrawSection4(nLeft);
+		DrawSection5(nLeft);
+		DrawSection7(nLeft);
+		break;
+	case 3:
+		DrawSection1(nLeft);
+		DrawSection2(nLeft);
+		DrawSection3(nLeft);
+		DrawSection4(nLeft);		
+		DrawSection7(nLeft);
+		break;
+	case 4:		
+		DrawSection2(nLeft);
+		DrawSection3(nLeft);		
+		DrawSection6(nLeft);
+		DrawSection7(nLeft);
+		break;
+	case 5:
+		DrawSection1(nLeft);
+		DrawSection3(nLeft);
+		DrawSection4(nLeft);
+		DrawSection6(nLeft);
+		DrawSection7(nLeft);
+		break;
+	case 6:
+		DrawSection1(nLeft);
+		DrawSection3(nLeft);
+		DrawSection4(nLeft);
+		DrawSection5(nLeft);
+		DrawSection6(nLeft);
+		DrawSection7(nLeft);
+		break;
+	case 7:
+		DrawSection1(nLeft);
+		DrawSection2(nLeft);
+		DrawSection3(nLeft);		
+		break;
+	case 8:
+		DrawSection1(nLeft);
+		DrawSection2(nLeft);
+		DrawSection3(nLeft);
+		DrawSection4(nLeft);
+		DrawSection5(nLeft);
+		DrawSection6(nLeft);
+		DrawSection7(nLeft);
+		break;
+	case 9:
+		DrawSection1(nLeft);
+		DrawSection3(nLeft);
+		DrawSection4(nLeft);
+		DrawSection2(nLeft);
+		DrawSection6(nLeft);
+		DrawSection7(nLeft);
+		break;
+	default:
+		;
+	}
+}
+
+
+void CDigitalClock::Draw2Dot(int nLeft)
+{
+	if (m_memDC.m_hDC!=NULL)
+	{
+		CBrush br(m_crText);				
+		
+		CRect rect;
+		rect.SetRect(nLeft+(int)(0.3*m_nWidth),(int)(0.4*m_nWidth)+m_nYmargin,
+			nLeft+(int)(0.6*m_nWidth),(int)(0.7*m_nWidth)+m_nYmargin);
+		m_memDC.Ellipse(rect);
+		CRgn rgn1;
+		rgn1.CreateEllipticRgn(rect.left,rect.top,rect.right,rect.bottom);
+		m_memDC.FillRgn(&rgn1,&br);
+		
+		rect.OffsetRect(0,(int)(0.8*m_nWidth)+m_nYmargin);
+		m_memDC.Ellipse(rect);
+		CRgn rgn2;
+		rgn2.CreateEllipticRgn(rect.left,rect.top,rect.right,rect.bottom);
+		m_memDC.FillRgn(&rgn2,&br);
+		
+		br.DeleteObject();
+		rgn1.DeleteObject();
+		rgn2.DeleteObject();
+	}
+
+}
+
+void CDigitalClock::DrawMinute()
+{
+	int nLeft=m_nXmargin+3*m_nWidth+m_nSpace;
+	if (m_nMinute<10)
+	{
+		DrawSingleNumber(0,nLeft);
+		nLeft+=m_nWidth+m_nSpace;
+		DrawSingleNumber(m_nMinute,nLeft);
+	}
+	else
+	{
+		TCHAR c[10]={0};		
+		_itoa(m_nMinute,c,10);		
+		int num1=c[0]-48;
+		int num2=c[1]-48;
+		DrawSingleNumber(num1,nLeft);
+		nLeft+=m_nWidth+m_nSpace;
+		DrawSingleNumber(num2,nLeft);		
+	}
+}
+
+void CDigitalClock::DrawSecond()
+{
+	int nLeft=m_nXmargin+6*m_nWidth+2*m_nSpace;
+	if (m_nSecond<10)
+	{
+		DrawSingleNumber(0,nLeft);
+		nLeft+=(int)(1.4*m_nWidth);
+		DrawSingleNumber(m_nSecond,nLeft);
+	}
+	else
+	{
+		TCHAR *c=new TCHAR[10];
+		_itoa(m_nSecond,c,10);
+		int num1=c[0]-48;
+		int num2=c[1]-48;
+		DrawSingleNumber(num1,nLeft);
+		nLeft+=m_nWidth+m_nSpace;
+		DrawSingleNumber(num2,nLeft);	
+	}
 }
